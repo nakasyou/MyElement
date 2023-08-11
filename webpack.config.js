@@ -699,8 +699,7 @@ module.exports = (env, argv) => {
             // chunks even after the app is redeployed.
             filename: "bundles/[hash]/[name].js",
             chunkFilename: "bundles/[hash]/[name].js",
-            webassemblyModuleFilename: "bundles/[hash]/[modulehash].wasm",
-            publicPath: "/MyElement/",
+            webassemblyModuleFilename: "bundles/[hash]/[modulehash].wasm"
         },
 
         // configuration for the webpack-dev-server
