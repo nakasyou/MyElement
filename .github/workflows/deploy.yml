@@ -33,7 +33,7 @@ jobs:
       #  run: PUBLIC_PATH=/ yarn dist
       - run: mkdir webapp
       - name: Copy file
-        run: deno/main.ts webapp/deno_serve.ts
+        run: cp deno/main.ts webapp/deno_serve.ts
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
