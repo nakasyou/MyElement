@@ -27,11 +27,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
-      #- name: Install deps
-      #  run: yarn install
-      #- name: Build
-      #  run: PUBLIC_PATH=/ yarn dist
-      - run: mkdir webapp
+      - name: Install deps
+        run: yarn install
+      - name: Build
+        run: PUBLIC_PATH=/ yarn dist
       - name: Copy file
         run: cp deno/main.ts webapp/deno_serve.ts
       - name: Upload to Deno Deploy
@@ -39,4 +38,4 @@ jobs:
         with:
           project: "nakasyou-element"
           entrypoint: "deno_serve.ts " # 📝 Update the entrypoint if necessary
-          root: "webapp" # 📝 Update the root if necessary
+          root: "./webapp" # 📝 Update the root if necessary
