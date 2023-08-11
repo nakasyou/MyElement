@@ -1,0 +1,42 @@
+name: Deploy
+on:
+  push:
+    branches: develop
+  pull_request:
+    branches: develop
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write # Needed for auth with Deno Deploy
+      contents: read # Needed to clone the repository
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Install Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+      #- name: Install deps
+      #  run: yarn install
+      #- name: Build
+      #  run: PUBLIC_PATH=/ yarn dist
+      - run: mkdir webapp
+      - name: Copy file
+        run: deno/main.ts webapp/deno_serve.ts
+      - name: Upload to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: "nakasyou-element"
+          entrypoint: "deno_serve.ts " # 📝 Update the entrypoint if necessary
+          root: "webapp" # 📝 Update the root if necessary
