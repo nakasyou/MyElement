@@ -1,10 +1,6 @@
 name: Tests
 on:
-    pull_request: {}
-    push:
-        branches: [develop, master]
-    repository_dispatch:
-        types: [element-web-notify]
+  workflow_dispatch:
 env:
     # These must be set for fetchdep.sh to get the right branch
     REPOSITORY: ${{ github.repository }}
