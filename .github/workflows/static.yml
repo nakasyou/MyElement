@@ -41,10 +41,12 @@ jobs:
         run: yarn install
       - name: Build
         run: PUBLIC_PATH=/MyElement/ yarn dist
+      - name: Kaitou
+        run: tar -zxvf ./dist/element-unknown.tar.gz
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: './webapp'
+          path: './element-unknown'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
