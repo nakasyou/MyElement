@@ -40,7 +40,7 @@ jobs:
       - name: Install deps
         run: yarn install
       - name: Build
-        run: yarn dist
+        run: PUBLIC_PATH=/MyElement/ yarn dist
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
