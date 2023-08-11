@@ -31,11 +31,13 @@ jobs:
         run: yarn install
       - name: Build
         run: PUBLIC_PATH=/ yarn dist
+      - name: Kaitou
+        run: tar -zxvf ./dist/element-unknown.tar.gz
       - name: Copy file
-        run: cp deno/main.ts webapp/deno_serve.ts
+        run: cp deno/main.ts element-unknown/deno_serve.ts
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
           project: "nakasyou-element"
           entrypoint: "deno_serve.ts " # 📝 Update the entrypoint if necessary
-          root: "./webapp" # 📝 Update the root if necessary
+          root: "./element-unknown" # 📝 Update the root if necessary
